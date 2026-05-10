@@ -1,0 +1,22 @@
+.container {
+  min-height: 100vh;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.loader {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 300;
+  color: #7f8893;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 30px 16px 40px;
+  }
+}
