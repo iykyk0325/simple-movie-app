@@ -1,47 +1,32 @@
 import { useState, useEffect } from "react";
 import Movie from "../component/Movie";
 import styles from "./Home.module.css";
+import {
+  SORT_OPTIONS,
+  SORT_OPTIONS_LABELS,
+  ORDER_OPTIONS,
+  ORDER_OPTIONS_LABELS,
+  RATING_OPTIONS,
+} from "../constants/movieFilters";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
 
-  const sortOptions = [
-    "title",
-    "year",
-    "rating",
-    "download_count",
-    "like_count",
-    "date_added",
-  ];
-  const sortOptionLabels = {
-    title: "제목",
-    year: "개봉 연도",
-    rating: "평점",
-    download_count: "다운로드",
-    like_count: "좋아요",
-    date_added: "최근 추가",
-  };
   const [selectedSortOption, setSelectedSortOption] =
     useState("download_count");
   const handleSelectedSortOptionChange = (e) => {
     setSelectedSortOption(e.target.value);
   };
 
-  const orderOptions = ["desc", "asc"];
-  const orderOptionLabels = {
-    desc: "내림차순",
-    asc: "오름차순",
-  };
   const [selectedOrderOption, setSelectedOrderOption] = useState("desc");
   const handleSelectedOrderOptionChange = (e) => {
     setSelectedOrderOption(e.target.value);
   };
 
-  const ratingOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [selectedRatingOption, setSelectedRatingOption] = useState(1);
   const handleSelectedRatingOptionChange = (e) => {
-    setSelectedRatingOption(e.target.value);
+    setSelectedRatingOption(Number(e.target.value));
   };
 
   useEffect(() => {
@@ -73,7 +58,7 @@ const Home = () => {
                 value={selectedRatingOption}
                 onChange={handleSelectedRatingOptionChange}
               >
-                {ratingOptions.map((opt) => {
+                {RATING_OPTIONS.map((opt) => {
                   return (
                     <option key={opt} value={opt}>
                       {opt}
@@ -92,10 +77,10 @@ const Home = () => {
                 value={selectedSortOption}
                 onChange={handleSelectedSortOptionChange}
               >
-                {sortOptions.map((opt) => {
+                {SORT_OPTIONS.map((opt) => {
                   return (
                     <option key={opt} value={opt}>
-                      {sortOptionLabels[opt]}
+                      {SORT_OPTIONS_LABELS[opt]}
                     </option>
                   );
                 })}
@@ -111,10 +96,10 @@ const Home = () => {
                 value={selectedOrderOption}
                 onChange={handleSelectedOrderOptionChange}
               >
-                {orderOptions.map((opt) => {
+                {ORDER_OPTIONS.map((opt) => {
                   return (
                     <option key={opt} value={opt}>
-                      {orderOptionLabels[opt]}
+                      {ORDER_OPTIONS_LABELS[opt]}
                     </option>
                   );
                 })}
